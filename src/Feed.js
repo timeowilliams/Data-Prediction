@@ -16,15 +16,23 @@ export default class Feed extends Component {
           .then(
             data => {
               this.setState({
-             countries: data
+             countries: data,
+             country:''
               })
             }
           );
       };
 
+      handleInput = event => {
+        this.setState({...this.state, country: event.target.value });
+      };
+    
+      logValue = () => {
+        console.log(this.state.country);
+      };
+
+
       render() {
-        // put render logic here
-        console.log(this.props.feedUrl)//SHould expect URL link
         if(this.state.countries){
         console.log('Countries are this obj', typeof this.state.countries)
        console.log('Countries are', this.state.countries)
@@ -32,7 +40,11 @@ export default class Feed extends Component {
   
         return (
           <div id = "feed" >
-            {this.props.countries}
+           <h4>{this.state.country}</h4> 
+            <div id = "button"> 
+                <input onChange={this.handleInput} placeholder="Enter country" />
+                <button onClick={this.logValue}>Search</button>
+            </div>
           </div>
         );
       }
