@@ -12,7 +12,12 @@ module.exports = {
             process: "process/browser"
         }
     },
-    devServer: { contentBase: path.join(__dirname, "src") },
+    devServer: { 
+        contentBase: path.join(__dirname, "src"),
+        proxy: {
+            '/api' : 'http://localhost:3000'
+        }
+    },
     module: {
         rules: [
             {   //Listen for react files
